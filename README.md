@@ -1,27 +1,32 @@
-# Market_arbitrage
-Implementation of a market abritrage strategy using the ccxt library
 
-The purpose of the bot is to automatically profit from temporary price differences of the asset(some cryptocurrency) on diffrent markets (exchanges).
+# Crypto Market - Arbitrage Bot (Arbitrage-Bot)
 
-The bot uses the most popular open-source trading library [ccxt](https://github.com/ccxt/ccxt) in order to find best price spread on the market.
+Cryptocurrency is still a new and inefficient market. Several Cryptocurrency exchanges exist around the world and the bid/ask prices they propose can be briefly different from an exchange to another. The purpose of Arbitrage-Bot is to automatically profit from these temporary price differences while being market-neutral.
 
-## Pro Tip
-All things considered, this actually will return a profit :) However, the volumes of the mispricings are not sufficient to make this a worthwhile enterprise. On a good day one you wouldn't make more than R10 :(
+Arbitrage-Bot uses the most popular open-source trading library [ccxt](https://github.com/ccxt/ccxt) in order to find best price spread on the market.
+
+WRITTEN BY: Andrei Zgirvaci
+
+CONTRIBUTE: Contributions are always welcome!
+
+*If you can, please take a minute to star this repo and follow me, It will be much appreciated!!!*
+
+---
 
 ## Requirements
 
-* **dokcer**
+* **python** version **3.7.0** installed
 
 ## Installation
 
 ```bash
-git clone https://github.com/antonga23/market_arbitrage.git
+git clone https://github.com/MD3XTER/Arbitrage-Bot.git
 
-cd market_arbitrage
+cd Arbitrage-Bot
 
-docker build ./ -t $nameofimage
+pip install ccxt
 
-docker run $nameofimage
+python3 arbitrage_bot.py
 ```
 
 ## Usage
@@ -32,9 +37,11 @@ First, you need to specify the markets you are going to target. Here is a [list]
 exchanges = [
     "binance",
     "bittrex",
+    "hitbtc",
     "poloniex",
-    "luno",
-    "ice3x",
+    "exmo",
+    "bitmex",
+    "huobi",
 ]
 ```
 
@@ -42,7 +49,7 @@ In order for the bot to be able to fetch market data, it needs an **API Key** an
 
 ```python
 exchangesData = {
-    "luno": {
+    "hitbtc": {
         "apiKey": "",
         "secret": "",
         "transactionFee": 0.001
@@ -62,7 +69,7 @@ exchangesData = {
         "secret": "",
         "transactionFee": 0.0025
     },
-    "ice3x": {
+    "exmo": {
         "apiKey": "",
         "secret": "",
         "transactionFee": 0.002
@@ -74,8 +81,8 @@ Secondly, you need to specify for which symbols should the bot look, here is a l
 
 ```python
 symbols = [
-    "ETH/ZAR",
-    "BTC/ZAR",
+    "ETH/USDT",
+    "XRP/USDT",
     "BTC/USDT",
     "BCH/USDT",
     "DASH/USDT",
@@ -87,8 +94,8 @@ symbols = [
 You can also specify min spread and min profit that you are interested in:
 
 ```python
-min_spread = 1 ##percentages
-min_profit = 0 ##percentages
+min_spread = 1
+min_profit = 0
 ```
 
 ---
