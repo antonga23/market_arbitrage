@@ -1,32 +1,26 @@
 
-# Crypto Market - Arbitrage Bot (Arbitrage-Bot)
+# Market arbitrage
 
-Cryptocurrency is still a new and inefficient market. Several Cryptocurrency exchanges exist around the world and the bid/ask prices they propose can be briefly different from an exchange to another. The purpose of Arbitrage-Bot is to automatically profit from these temporary price differences while being market-neutral.
+This bot implements a market arbitrage strategy using various cryptocurrencies on different exchanges.
 
-Arbitrage-Bot uses the most popular open-source trading library [ccxt](https://github.com/ccxt/ccxt) in order to find best price spread on the market.
-
-WRITTEN BY: Andrei Zgirvaci
-
-CONTRIBUTE: Contributions are always welcome!
-
-*If you can, please take a minute to star this repo and follow me, It will be much appreciated!!!*
+The bot uses the most popular open-source trading library [ccxt](https://github.com/ccxt/ccxt) in order to find best price spread on the market.
 
 ---
 
 ## Requirements
 
-* **python** version **3.7.0** installed
+* **Dokcer**
 
 ## Installation
 
 ```bash
-git clone https://github.com/MD3XTER/Arbitrage-Bot.git
+git clone https://github.com/antonga23/market_arbitrage.git
 
-cd Arbitrage-Bot
+cd market_arbitrage
 
-pip install ccxt
+docker build ./ -t $image_name
 
-python3 arbitrage_bot.py
+docker run $image_name
 ```
 
 ## Usage
@@ -39,17 +33,17 @@ exchanges = [
     "bittrex",
     "hitbtc",
     "poloniex",
-    "exmo",
+    "luno",
     "bitmex",
-    "huobi",
+    "ice3x",
 ]
 ```
 
-In order for the bot to be able to fetch market data, it needs an **API Key** and a **Secret Token** for each market you are going to target:
+In order for the bot to be able to fetch market data, it needs an **API Key** and a **Secret Token** for each market (exchange) you are going to target:
 
 ```python
 exchangesData = {
-    "hitbtc": {
+    "ice3x": {
         "apiKey": "",
         "secret": "",
         "transactionFee": 0.001
@@ -69,7 +63,7 @@ exchangesData = {
         "secret": "",
         "transactionFee": 0.0025
     },
-    "exmo": {
+    "luno": {
         "apiKey": "",
         "secret": "",
         "transactionFee": 0.002
@@ -81,9 +75,9 @@ Secondly, you need to specify for which symbols should the bot look, here is a l
 
 ```python
 symbols = [
-    "ETH/USDT",
-    "XRP/USDT",
-    "BTC/USDT",
+    "ETH/ZAR",
+    "BTC/ZAR",
+    "BTC/ETH",
     "BCH/USDT",
     "DASH/USDT",
     "XMR/USDT",
@@ -94,8 +88,8 @@ symbols = [
 You can also specify min spread and min profit that you are interested in:
 
 ```python
-min_spread = 1
-min_profit = 0
+min_spread = 1 ## as percentages 
+min_profit = 0 ## as percentages
 ```
 
 ---
@@ -103,3 +97,5 @@ min_profit = 0
 Take in mind that there are two ways to create buy orders: [create_market_buy_order](https://github.com/ccxt/ccxt/wiki/Manual#market-orders) and [create_limit_buy_order](https://github.com/ccxt/ccxt/wiki/Manual#limit-orders). You should decide for yourself what method fits you better.
 
 For more information on how each method works, take a look at the official [ccxt](https://github.com/ccxt/ccxt/wiki) documentation.
+
+Also huge credit to @Andrei Zgirvaci
