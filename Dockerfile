@@ -11,7 +11,7 @@ RUN apk update \
 	openssl-dev \
     && apk add \
         bash
-RUN pip3 install -r requirements.txt
-COPY arbitrage_bot.py ./
 COPY requirements.txt ./
+COPY arbitrage_bot.py ./
+RUN pip3 install -r requirements.txt
 CMD [ "python3", "./arbitrage_bot.py" ]
