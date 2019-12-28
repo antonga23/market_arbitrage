@@ -12,6 +12,6 @@ RUN apk update \
     && apk add \
         bash
 RUN pip3 install -r requirements.txt
-COPY arbitrage_bot.py ./ requirements.txt ./
-COPY
+COPY arbitrage_bot.py ./
+COPY requirements.txt ./
 CMD [ "python3", "./arbitrage_bot.py" ]
