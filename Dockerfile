@@ -11,6 +11,6 @@ RUN apk update \
 	openssl-dev \
     && apk add \
         bash
-RUN pip3 install ccxt
+RUN pip3 install -r requirements.txt
 COPY arbitrage_bot.py ./
 CMD [ "python3", "./arbitrage_bot.py" ]
