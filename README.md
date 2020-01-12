@@ -20,7 +20,9 @@ cd market_arbitrage
 
 docker build ./ -t $image_name
 
-docker run $image_name
+docker run -d --$container_name $image_name
+
+docker logs -f $container_name
 ```
 
 ## Usage
