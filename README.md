@@ -20,7 +20,7 @@ cd market_arbitrage
 
 docker build ./ -t $image_name
 
-docker run -d --$container_name $image_name
+docker run -p $port:3000 -d --name $container_name $image_name
 
 docker logs -f $container_name
 ```
